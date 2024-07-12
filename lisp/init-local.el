@@ -102,11 +102,113 @@
   :commands (prism-mode prism-whitespace-mode)
   )
 (use-package deadgrep
-  :bind ("C-c h" . deadgrep)
+  :bind ("C-c H" . deadgrep)
+  )
+
+(global-set-key (kbd "C-c h") 'sanityinc/consult-ripgrep-at-point )
+
+(use-package embark
+  :bind (
+         ("C-." . embark-act)       ;; pick some comfortable binding
+         ("C-h B" . embark-bindings) ;; alternative for `describe-bindings'
+         ("C-;" . embark-dwim)
+         )
+  :init
+  ;; Optionally replace the key help with a completing-read interface
+  (setq prefix-help-command #'embark-prefix-help-command)
+  :config
+  ;; Hide the mode line of the Embark live/completions buffers
+  (add-to-list 'display-buffer-alist
+               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                 nil
+                 (window-parameters (mode-line-format . none))))
+  )
+
+(use-package embark-consult)
+
+
+(add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+(add-hook 'minibuffer-setup-hook #'vertico-repeat-save)
+(global-set-key "\M-R" #'vertico-repeat)
+
+
+(use-package consult
+  :bind
+  ("C-c b r" . consult-recent-file)
+  ("M-g o" . consult-outline)
+  ("M-g m" . consult-mark)
+  ("M-g k" . consult-global-mark)
+  ("M-g i" . consult-imenu)
+  ("M-s l" . consult-line)
   )
 
 
+
+
+(use-package cape
+  ;; Bind dedicated completion commands
+  ;; Alternative prefix keys: C-c p, M-p, M-+, ...
+  :bind (("C-c p p" . completion-at-point) ;; capf
+         ("C-c p t" . complete-tag)        ;; etags
+         ("C-c p d" . cape-dabbrev)        ;; or dabbrev-completion
+         ("C-c p h" . cape-history)
+         ("C-c p f" . cape-file)
+         ("C-c p k" . cape-keyword)
+         ("C-c p s" . cape-symbol)
+         ("C-c p a" . cape-abbrev)
+         ("C-c p i" . cape-ispell)
+         ("C-c p l" . cape-line)
+         ("C-c p w" . cape-dict)
+         ("C-c p \\" . cape-tex)
+         ("C-c p _" . cape-tex)
+         ("C-c p ^" . cape-tex)
+         ("C-c p &" . cape-sgml)
+         ("C-c p r" . cape-rfc1345))
+  :init
+  ;; Add `completion-at-point-functions', used by `completion-at-point'.
+  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  (add-to-list 'completion-at-point-functions #'cape-file)
+  ;;(add-to-list 'completion-at-point-functions #'cape-history)
+  ;;(add-to-list 'completion-at-point-functions #'cape-keyword)
+  ;;(add-to-list 'completion-at-point-functions #'cape-tex)
+  ;;(add-to-list 'completion-at-point-functions #'cape-sgml)
+  ;;(add-to-list 'completion-at-point-functions #'cape-rfc1345)
+  ;;(add-to-list 'completion-at-point-functions #'cape-abbrev)
+  ;;(add-to-list 'completion-at-point-functions #'cape-ispell)
+  ;;(add-to-list 'completion-at-point-functions #'cape-dict)
+  ;;(add-to-list 'completion-at-point-functions #'cape-symbol)
+  ;;(add-to-list 'completion-at-point-functions #'cape-line)
+  )
+
+
+
+
+
+(use-package copilot
+  :load-path "/Users/bishbr/src/emacs/copilot.el"
+  :custom
+  (copilot-node-executable "/opt/homebrew/bin/node")
+  (copilot-indent-offset-warning-disable t)
+  :config
+  (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
+  (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
+  (define-key copilot-mode-map (kbd "M-C-N") #'copilot-next-completion)
+  (define-key copilot-mode-map (kbd "M-C-P") #'copilot-previous-completion)
+  (define-key copilot-mode-map (kbd "M-C-<right>") #'copilot-accept-completion-by-word)
+  (define-key copilot-mode-map (kbd "M-C-<down>") #'copilot-accept-completion-by-line)
+  (define-key copilot-mode-map (kbd "C-g") #'copilot-clear-overlay)
+  (global-copilot-mode -1)
+  )
+
+(use-package phrases
+  :load-path "/Users/bishbr/tsk/emacs_lisp_phrases"
+  )
+
+
+
 (require 'init-bishbr-cosmetic)
+(require 'init-bishbr-git)
+(require 'init-bishbr-org)
 
 (provide 'init-local)
 
