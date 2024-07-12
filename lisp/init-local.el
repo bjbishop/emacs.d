@@ -206,9 +206,46 @@
 
 
 
+(use-package groovy-mode
+  :diminish
+  :custom
+  (groovysh "/opt/homebrew/bin/groovysh")
+  )
+
+(use-package bats-mode
+  :mode "\\.bats\\'"
+  )
+
+(use-package jenkinsfile-mode
+  :mode ("\\Jenkinsfile\\'" . jenkinsfile-mode)
+  )
+
+
+;;https://github.com/john2x/jenkinsfile-mode/issues/1#issuecomment-644597436
+
+(flycheck-define-checker jenkinsfile
+  "A Jenkins declarative pipeline syntax checker using the Jenkins declarative linter.
+  See URL `https://www.jenkins.io/doc/book/pipeline/development/#linter'."
+  :command ("ssh" "-p" "2022" "-i" "~/.ssh/bishbr@PEARSONML-91R5Q05-rsa" "admin@localhost" "declarative-linter")
+  :standard-input t
+  :error-patterns
+  ((error line-start "WorkflowScript: " line ": " (message) " @ line " line ", column " column "." line-end))
+  :modes (jenkinsfile-mode groovy-mode))
+
+
+(use-package writegood-mode)
+(use-package wgrep-deadgrep)
+
+
+
+
 (require 'init-bishbr-cosmetic)
 (require 'init-bishbr-git)
 (require 'init-bishbr-org)
+(require 'init-bishbr-dired)
+(require 'init-bishbr-term)
+(require 'init-bishbr-project)
+
 
 (provide 'init-local)
 
