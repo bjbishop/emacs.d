@@ -76,6 +76,34 @@
   (editorconfig-mode 1)
   )
 
+(use-package crux)
+
+(use-package pinentry
+  :demand t
+  :config
+  (pinentry-start)
+  )
+
+(use-package ace-window
+  :commands (ace-window)
+  )
+
+(use-package ace-jump-mode
+  :chords (
+           ("vb" . ace-jump-word-mode)
+           ("yg" . ace-jump-line-mode)
+           )
+  :bind (
+         ("A-a" . ace-jump-char-mode)
+         )
+  )
+
+(use-package prism
+  :commands (prism-mode prism-whitespace-mode)
+  )
+(use-package deadgrep
+  :bind ("C-c h" . deadgrep)
+  )
 
 
 (require 'init-bishbr-cosmetic)
