@@ -54,6 +54,10 @@
   :custom
   (blamer-idle-time 0.3)
   (blamer-min-offset 70)
+  (blamer--overlay-popup-position 'smart)
+  (blamer-force-truncate-long-line nil)
+  (blamer-max-commit-message-length 70)
+  (blamer-show-avatar-p nil)
   :custom-face
   (blamer-face ((t :foreground "#7a88cf"
                    :background "unspecified"
@@ -61,9 +65,6 @@
                    :italic t)))
   :config
   (global-blamer-mode -1))
-
-
-
 
 
 (provide 'init-bishbr-git)

@@ -22,6 +22,8 @@
 (setenv "LSP_USE_PLISTS" "true")
 (setenv "SVDIR" "/opt/homebrew/var/service")
 (setenv "RUNIT_DIR" "/opt/homebrew/var/service")
+(setenv "GNUPGHOME" "~/src/stow/gnupg")
+(setenv "GPG_TTY" "/dev/ttys000")
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (setq
@@ -57,14 +59,18 @@
 
 
 (bind-key "C-c b f" 'browse-url-at-point)
+(bind-key "C-c b u" 'revert-buffer)
+(bind-key "C-c w" 'whitespace-cleanup)
+
 (midnight-mode t)
+(desktop-save-mode -1)
+
+
 (use-package simple-modeline
   :demand t
   :config
   (simple-modeline-mode 1)
   )
-
-
 
 (use-package flymake-shellcheck
   :hook (sh-mode . flymake-shellcheck-load)
@@ -182,7 +188,8 @@
 
 
 
-
+(use-package copilot-chat
+  :load-path "/Users/bishbr/src/emacs/copilot-chat.el")
 
 (use-package copilot
   :load-path "/Users/bishbr/src/emacs/copilot.el"
@@ -203,8 +210,6 @@
 (use-package phrases
   :load-path "/Users/bishbr/tsk/emacs_lisp_phrases"
   )
-
-
 
 (use-package groovy-mode
   :diminish
@@ -236,8 +241,85 @@
 (use-package writegood-mode)
 (use-package wgrep-deadgrep)
 
+(use-package smart-region
+  :bind ("C-@" . er/expand-region)
+  )
 
+(use-package yafolding
+  :defer t
+  :init
+  (add-hook 'prog-mode-hook 'yafolding-mode)
+  (add-hook 'yaml-mode-hook 'yafolding-mode)
+  (add-hook 'json-mode-hook 'yafolding-mode)
+  )
 
+(use-package multiple-cursors
+  :bind (
+         ("C-S-c C-S-c" . mc/edit-lines)
+         ("C-c C-<" . mc/mark-all-like-this)
+         ("C-S-<mouse-1>" . mc/add-cursor-on-click)
+         )
+  :config
+  (multiple-cursors-mode 1)
+  )
+
+(use-package move-text
+  :bind (
+         ("M-<up>" .  move-text-up)
+         ("M-<down>" . move-text-down)
+         )
+  )
+
+(use-package volatile-highlights
+  :defer t
+  :blackout t
+  :config
+  (volatile-highlights-mode t)
+  )
+
+(use-package hydra
+  :defer 2
+  :config
+  (require 'hydra-examples)
+  (key-chord-define-global ",."
+                           (defhydra hydra-splitter (global-map "C-M-s"
+                                                                :pre (progn
+                                                                       (global-hl-line-mode 1)
+                                                                       (blink-cursor-start)
+                                                                       )
+                                                                :post (global-hl-line-mode -1))
+                             ("1" delete-other-windows)
+                             ("n" hydra-move-splitter-left)
+                             ("i" hydra-move-splitter-down)
+                             ("h" hydra-move-splitter-right)
+                             ("r" hydra-move-splitter-up)
+                             ("b" balance-windows "bal")
+                             ("s" swap-buffers "swp")
+                             ("A-n" windmove-left)
+                             ("A-i" windmove-down)
+                             ("A-h" windmove-right)
+                             ("A-r" windmove-up)
+                             ("0" ace-delete-window "del")
+                             ("+" text-scale-increase "in")
+                             ("-" text-scale-decrease "out")
+                             ("m" (ace-window 4) "mov")
+                             ("o" rotate-window "rotwin")
+                             ("l" rotate-layout "rotlay")
+                             ("v" (lambda ()
+                                    (interactive)
+                                    (split-window-right)
+                                    (windmove-right)
+                                    )
+                              "vert")
+                             ("x" (lambda ()
+                                    (interactive)
+                                    (split-window-below)
+                                    (windmove-down)
+                                    )
+                              "horz")
+                             )
+                           )
+  )
 
 (require 'init-bishbr-cosmetic)
 (require 'init-bishbr-git)
