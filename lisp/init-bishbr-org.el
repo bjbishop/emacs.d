@@ -38,6 +38,8 @@
   (setq consult-denote-grep-command 'consult-ripgrep)
   :bind
   ("<f7>" . consult-denote-grep)
+  :init
+  (consult-denote-mode t)
   )
 
 

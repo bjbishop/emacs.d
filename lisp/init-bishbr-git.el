@@ -4,7 +4,9 @@
 ;;
 
 
-
+;; ;; I just removed this from init-github.el
+;; (when (package-installed-p 'forge)
+;;   (package-delete (car (cdr (assoc 'forge package-alist)))))
 
 (use-package vc-msg
   :bind ("C-x v p" . vc-msg-show)

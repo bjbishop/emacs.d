@@ -5,10 +5,11 @@
 
 ;;; Code:
 
-
+;; (dimmer-mode -1)
 (setq custom-enabled-themes '(whiteboard))
 (use-package auto-virtualenvwrapper
   )
+(use-package request)
 
 (setq use-package-always-ensure t)
 (setq use-package-verbose nil)
@@ -42,6 +43,7 @@
  mac-command-modifier 'meta
  mac-function-modifier 'hyper
  clean-buffer-list-delay-general 1
+ display-time-default-load-average nil
  )
 
 (setq recentf-exclude (append '(
@@ -207,6 +209,8 @@
   (global-copilot-mode -1)
   )
 
+(use-package indent-guide)
+
 (use-package phrases
   :load-path "/Users/bishbr/tsk/emacs_lisp_phrases"
   )
@@ -320,6 +324,37 @@
                              )
                            )
   )
+
+(use-package easysession
+  :diminish
+  :config
+  (easysession-save-mode t)
+  )
+
+(use-package lin
+  ;; How to add it to specific modes
+  ;; :config
+  ;; (setq lin-mode-hooks
+  ;;       '(bongo-mode-hook
+  ;;         dired-mode-hook
+  ;;         elfeed-search-mode-hook
+  ;;         git-rebase-mode-hook
+  ;;         grep-mode-hook
+  ;;         ibuffer-mode-hook
+  ;;         ilist-mode-hook
+  ;;         ledger-report-mode-hook
+  ;;         log-view-mode-hook
+  ;;         magit-log-mode-hook
+  ;;         mu4e-headers-mode-hook
+  ;;         notmuch-search-mode-hook
+  ;;         notmuch-tree-mode-hook
+  ;;         occur-mode-hook
+  ;;         org-agenda-mode-hook
+  ;;         pdf-outline-buffer-mode-hook
+  ;;         proced-mode-hook
+  ;;         tabulated-list-mode-hook))
+  )
+
 
 (require 'init-bishbr-cosmetic)
 (require 'init-bishbr-git)
