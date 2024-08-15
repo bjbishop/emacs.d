@@ -210,6 +210,13 @@
   )
 
 (use-package indent-guide)
+(global-unset-key (kbd "C-;"))
+(use-package iedit
+  :bind (
+         ("C-;" . iedit-mode)
+         ("<f5>" . iedit-mode)
+         )
+  )
 
 (use-package phrases
   :load-path "/Users/bishbr/tsk/emacs_lisp_phrases"
@@ -266,6 +273,7 @@
   :config
   (multiple-cursors-mode 1)
   )
+
 
 (use-package move-text
   :bind (
@@ -326,33 +334,30 @@
   )
 
 (use-package easysession
-  :diminish
+  :diminish 'easysession-save-mode
   :config
   (easysession-save-mode t)
   )
 
 (use-package lin
   ;; How to add it to specific modes
-  ;; :config
-  ;; (setq lin-mode-hooks
-  ;;       '(bongo-mode-hook
-  ;;         dired-mode-hook
-  ;;         elfeed-search-mode-hook
-  ;;         git-rebase-mode-hook
-  ;;         grep-mode-hook
-  ;;         ibuffer-mode-hook
-  ;;         ilist-mode-hook
-  ;;         ledger-report-mode-hook
-  ;;         log-view-mode-hook
-  ;;         magit-log-mode-hook
-  ;;         mu4e-headers-mode-hook
-  ;;         notmuch-search-mode-hook
-  ;;         notmuch-tree-mode-hook
-  ;;         occur-mode-hook
-  ;;         org-agenda-mode-hook
-  ;;         pdf-outline-buffer-mode-hook
-  ;;         proced-mode-hook
-  ;;         tabulated-list-mode-hook))
+  :config
+  (setq lin-mode-hooks
+        '(
+          prog-mode-hook
+          dired-mode-hook
+          git-rebase-mode-hook
+          grep-mode-hook
+          ibuffer-mode-hook
+          log-view-mode-hook
+          magit-log-mode-hook
+          occur-mode-hook
+          org-agenda-mode-hook
+          proced-mode-hook
+          tabulated-list-mode-hook
+          )
+        )
+  (lin-global-mode t)
   )
 
 

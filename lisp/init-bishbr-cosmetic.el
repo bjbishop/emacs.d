@@ -43,8 +43,9 @@
   (mapc #'disable-theme custom-enabled-themes)
   (pcase appearance
     ('light
-     (setq catppuccin-flavor 'latte)
-     (catppuccin-reload)
+     (load-theme 'doom-flatwhite)
+     ;; (setq catppuccin-flavor 'latte)
+     ;; (catppuccin-reload)
 
      (add-to-list 'default-frame-alist '(ns-appearance . light))
      (add-to-list 'frameset-filter-alist '(ns-transparent-titlebar . :never))
@@ -63,7 +64,7 @@
      )))
 
 (add-hook 'ns-system-appearance-change-functions #'my/apply-theme)
-;; (my/apply-theme 'light)
+(my/apply-theme 'light)
 
 (defun light ()
   "Activate a light color theme."
