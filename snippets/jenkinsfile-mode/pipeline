@@ -1,0 +1,31 @@
+# -*- mode: snippet -*-
+# name: pipeline
+# key: pipeline
+# --
+
+pipeline {
+    agent any
+
+    environment {
+        KEY = "value"
+    }
+
+    stages {
+        stage("Example") {
+            when {
+                branch "main"
+            }
+            steps {
+                sh """\
+                  uptime
+                  """
+            } // steps
+            post {
+                cleanup {
+                    deleteDir()
+                }
+            }
+        } // stage
+    } // stages
+
+} // pipeline

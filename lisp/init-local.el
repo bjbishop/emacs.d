@@ -63,6 +63,10 @@
 (bind-key "C-c b f" 'browse-url-at-point)
 (bind-key "C-c b u" 'revert-buffer)
 (bind-key "C-c w" 'whitespace-cleanup)
+(bind-key "H-<up>" 'scroll-down)
+(bind-key "H-<down>" 'scroll-up)
+(bind-key "H-<left>" 'beginning-of-buffer)
+(bind-key "H-<right>" 'end-of-buffer)
 
 (midnight-mode t)
 (desktop-save-mode -1)
@@ -209,6 +213,8 @@
   (global-copilot-mode -1)
   )
 
+(diminish 'envrc-mode)
+
 (use-package indent-guide)
 (global-unset-key (kbd "C-;"))
 (use-package iedit
@@ -241,7 +247,7 @@
 
 (flycheck-define-checker jenkinsfile
   "A Jenkins declarative pipeline syntax checker using the Jenkins declarative linter.
-  See URL `https://www.jenkins.io/doc/book/pipeline/development/#linter'."
+See URL `https://www.jenkins.io/doc/book/pipeline/development/#linter'."
   :command ("ssh" "-p" "2022" "-i" "~/.ssh/bishbr@PEARSONML-91R5Q05-rsa" "admin@localhost" "declarative-linter")
   :standard-input t
   :error-patterns
@@ -360,6 +366,8 @@
   (lin-global-mode t)
   )
 
+(use-package yasnippet)
+(use-package consult-yasnippet)
 
 (require 'init-bishbr-cosmetic)
 (require 'init-bishbr-git)

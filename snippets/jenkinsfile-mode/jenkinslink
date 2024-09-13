@@ -1,0 +1,8 @@
+# -*- mode: jenkinsfile -*-
+# name: Jenkins job URL
+# key: jenkinslink
+# --
+
+// This pipeline code is executing here:
+// ${1:`(substring-no-properties (current-kill 0 t))`}
+

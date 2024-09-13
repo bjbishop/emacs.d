@@ -20,6 +20,7 @@
   :bind
   ("C-x p v" . project-vterm)
   ("C-x p m" . magit-status)
+  ("C-x p g" . consult-ripgrep)
   :custom
   (project-switch-commands
    '((project-find-file "File" nil)
@@ -27,13 +28,13 @@
      (project-vterm "vterm" "v")
      (project-dired "Dired" nil)
      (consult-ripgrep "Rg" "g")
-     (eat-project "Eat" "e")
      (project-vc-dir "VC" "c")
      (project-execute-extended-command "eXt" "x")
      ))
   )
 
 (use-package consult-project-extra)
+(use-package otpp)
 
 
 (provide 'init-bishbr-project)
