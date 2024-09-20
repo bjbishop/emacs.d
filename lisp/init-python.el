@@ -12,7 +12,16 @@
                 ("SConscript\\'" . python-mode))
               auto-mode-alist))
 
-(setq python-shell-interpreter "python3")
+(setq
+ python-shell-interpreter "python3"
+ python-interpreter "python"
+ python-shell-completion-native-enable nil
+ python-shell-completion-native-try-output-timeout 2.0
+ python-shell-dedicated 'project
+ python-shell-interpreter "python3"
+ python-shell-interpreter-args "-q"
+ python-shell-interpreter-interactive-arg "-i"
+ )
 
 (require-package 'pip-requirements)
 

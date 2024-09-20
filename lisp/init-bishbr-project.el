@@ -34,7 +34,10 @@
   )
 
 (use-package consult-project-extra)
-(use-package otpp)
+(use-package otpp
+  :config
+  (otpp-mode t)
+  )
 
 
 (provide 'init-bishbr-project)

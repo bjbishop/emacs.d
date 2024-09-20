@@ -6,9 +6,10 @@
 ;;; Code:
 
 ;; (dimmer-mode -1)
+
 (setq custom-enabled-themes '(whiteboard))
-(use-package auto-virtualenvwrapper
-  )
+(use-package blackout)
+(use-package auto-virtualenvwrapper)
 (use-package request)
 
 (setq use-package-always-ensure t)
@@ -28,6 +29,9 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (setq
+ user-mail-address "bryan.bishop@pearson.com"
+ add-log-always-start-new-record nil
+ add-log-keep-changes-together t
  calendar-latitude 41.920507
  calendar-longitude -91.423098
  initial-scratch-message ""
@@ -193,7 +197,6 @@
   )
 
 
-
 (use-package copilot-chat
   :load-path "/Users/bishbr/src/emacs/copilot-chat.el")
 
@@ -214,7 +217,7 @@
   )
 
 (diminish 'envrc-mode)
-
+(column-number-mode t)
 (use-package indent-guide)
 (global-unset-key (kbd "C-;"))
 (use-package iedit
@@ -375,6 +378,7 @@ See URL `https://www.jenkins.io/doc/book/pipeline/development/#linter'."
 (require 'init-bishbr-dired)
 (require 'init-bishbr-term)
 (require 'init-bishbr-project)
+(require 'init-bishbr-python)
 
 
 (provide 'init-local)

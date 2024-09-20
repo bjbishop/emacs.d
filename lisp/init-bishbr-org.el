@@ -34,7 +34,7 @@
   )
 
 (use-package consult-denote
-  :config
+  :init
   (setq consult-denote-grep-command 'consult-ripgrep)
   :bind
   ("<f7>" . consult-denote-grep)

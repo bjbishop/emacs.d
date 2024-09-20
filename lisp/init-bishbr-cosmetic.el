@@ -97,6 +97,10 @@
     (pixel-scroll-precision-mode -1)
   )
 
+(use-package indent-bars
+  :hook ((python-mode yaml-mode) . indent-bars-mode)
+  )
+
 (provide 'init-bishbr-cosmetic)
 
 ;;; init-bishbr-cosmetic.el ends here
