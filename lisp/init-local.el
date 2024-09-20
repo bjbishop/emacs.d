@@ -380,7 +380,6 @@ See URL `https://www.jenkins.io/doc/book/pipeline/development/#linter'."
 (require 'init-bishbr-project)
 (require 'init-bishbr-python)
 
-
 (provide 'init-local)
 
 ;;; init-local.el ends here
