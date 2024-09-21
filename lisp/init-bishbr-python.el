@@ -16,6 +16,8 @@
   (setq-default py-vterm-interaction-silent-cells t)
   )
 
+
+
 (provide 'init-bishbr-python)
 
 ;;; init-bishbr-python.el ends here
