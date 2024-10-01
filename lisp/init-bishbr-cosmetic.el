@@ -98,6 +98,7 @@
   )
 
 (use-package indent-bars
+  :disabled
   :hook ((python-mode yaml-mode) . indent-bars-mode)
   )
 
