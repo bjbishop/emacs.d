@@ -5,6 +5,7 @@
 
 ;;; Code:
 
+;; https://github.com/vale981/py-vterm-interaction.el
 (use-package py-vterm-interaction
   ;; :load-path "~/proj/emacs/py-vterm-interaction.el"
   :hook (python-mode . py-vterm-interaction-mode)
@@ -15,8 +16,6 @@
   (setq-default py-vterm-interaction-repl-program "ipython3")
   (setq-default py-vterm-interaction-silent-cells t)
   )
-
-
 
 (provide 'init-bishbr-python)
 

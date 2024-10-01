@@ -23,11 +23,6 @@
      )
   )
 
-
-
-
-
-
 (add-to-list 'load-path "~/src/emacs-libvterm")
 (let (vterm-install)
   (require 'vterm))
@@ -45,8 +40,9 @@
 
 (setq
  vterm-kill-buffer-on-exit t
- vterm-shell "/opt/homebrew/bin/zsh -li"
+ vterm-shell "/opt/homebrew/bin/zsh -i"
  vterm-max-scrollback 20000
+ multi-vterm-dedicated-window-height-percent 33
  )
 
 (defun vterm-set-title-hook (title)

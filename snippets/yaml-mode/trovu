@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: trovu
+# key: !trovu
+# expand-env: ((yas-indent-line 'fixed) (yas-wrap-around-region 'nil))
+# --
+
+$0 1:
+  url: `(substring-no-properties (current-kill 0 t))` + <query>
+  title: Search ${1}
+  description: Search for a keyword on ${1}
+  tags:
+    - tag
+  examples:
+    - arguments: ${2}
+      description: Search for "${2}" on ${1}

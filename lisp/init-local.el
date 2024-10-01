@@ -28,7 +28,11 @@
 (setenv "GPG_TTY" "/dev/ttys000")
 (fset 'yes-or-no-p 'y-or-n-p)
 
+;; man pages
+;; https://github.com/abo-abo/swiper/issues/2836#issuecomment-831292443
 (setq
+ manual-program "gman"
+ consult-man-args "gman -k"
  user-mail-address "bryan.bishop@pearson.com"
  add-log-always-start-new-record nil
  add-log-keep-changes-together t
@@ -48,7 +52,24 @@
  mac-function-modifier 'hyper
  clean-buffer-list-delay-general 1
  display-time-default-load-average nil
+ make-backup-files t
  )
+
+;; Backup related things
+(make-directory "~/.emacs.d/var/autosave/" t)
+(make-directory "~/.emacs.d/var/backup/" t)
+(setq backup-directory-alist
+      `(
+        ("." . "/.emacs.d/var/backup/")
+        ("COMMIT_EDITMSG" . nil)
+        ("RMAIL" . nil)
+        )
+      )
+(setq auto-save-file-name-transforms '((".*" "~/.emacs.d/var/autosave/" t)))
+(setq vc-make-backup-files t)
+(setq delete-old-versions t)
+(setq version-control t)
+(setq tramp-backup-directory-alist `(("." . "~/.emacs.d/var/backup/")))
 
 (setq recentf-exclude (append '(
                                 "/sudo:"

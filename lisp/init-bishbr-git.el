@@ -40,13 +40,18 @@
                        :type "gitlab"
                        ))
   (add-to-list 'browse-at-remote-remote-type-regexps
-               `(:host ,(rx bol "work.gitlab.com" eol)
+               `(:host ,(rx bol "gitlab.com-personal" eol)
                        :type "gitlab"
                        :actual-host "gitlab.com"
                        ))
   (add-to-list 'browse-at-remote-remote-type-regexps
                `(:host ,(rx bol "bitbucket.pearson.com" eol)
                        :type "bitbucket"
+                       ))
+  (add-to-list 'browse-at-remote-remote-type-regexps
+               `(:host ,(rx bol "github.com-bjbishop" eol)
+                       :type "github"
+                       :actual-host "github.com"
                        ))
 
   )

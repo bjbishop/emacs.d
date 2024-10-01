@@ -35,6 +35,7 @@
 
 (use-package consult-project-extra)
 (use-package otpp
+  :disabled
   :config
   (otpp-mode t)
   )
