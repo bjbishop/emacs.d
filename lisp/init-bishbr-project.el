@@ -3,6 +3,18 @@
 ;;; Commentary:
 ;;
 
+(defun bjb/findtodos()
+  (interactive)
+  (consult-line-multi nil "TODO")
+  )
+
+(use-package fd-dired)
+
+(defun bjb/finddocs()
+  (interactive)
+  (fd-dired "." "--no-ignore --extension=md --extension=org --extension=txt")
+  )
+
 
 (defun project-vterm ()
   (interactive)
@@ -15,12 +27,15 @@
       (vterm))))
 
 
-
 (use-package project
   :bind
   ("C-x p v" . project-vterm)
   ("C-x p m" . magit-status)
   ("C-x p g" . consult-ripgrep)
+  ("C-x p z" . fzf)
+  ("C-x p T" . bjb/findtodos)
+  ("C-x p t" . bjb/finddocs)
+  ("C-x p l" . consult-line-multi)
   :custom
   (project-switch-commands
    '((project-find-file "File" nil)

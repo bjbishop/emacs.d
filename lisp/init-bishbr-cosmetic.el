@@ -43,7 +43,7 @@
   (mapc #'disable-theme custom-enabled-themes)
   (pcase appearance
     ('light
-     (load-theme 'doom-flatwhite)
+     (load-theme 'doom-one-light)
      ;; (setq catppuccin-flavor 'latte)
      ;; (catppuccin-reload)
 
@@ -54,7 +54,7 @@
                                      ))
      )
     ('dark
-     (load-theme 'deeper-blue)
+     (load-theme 'doom-winter-is-coming-dark-blue)
 
      (add-to-list 'default-frame-alist '(ns-appearance . dark))
      (add-to-list 'frameset-filter-alist '(ns-transparent-titlebar . :never))

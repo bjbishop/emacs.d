@@ -40,10 +40,12 @@
 
 (setq
  vterm-kill-buffer-on-exit t
- vterm-shell "/opt/homebrew/bin/zsh -i"
+ vterm-shell "/opt/homebrew/bin/bash"
  vterm-max-scrollback 20000
  multi-vterm-dedicated-window-height-percent 33
  )
+
+(setq-default vterm-shell "/opt/homebrew/bin/bash")
 
 (defun vterm-set-title-hook (title)
   "TITLE = user@host@lastcmd:path  or user@host:path."

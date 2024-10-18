@@ -53,19 +53,16 @@
  clean-buffer-list-delay-general 1
  display-time-default-load-average nil
  make-backup-files t
+ justl-shell 'vterm
  )
 
 ;; Backup related things
-(make-directory "~/.emacs.d/var/autosave/" t)
-(make-directory "~/.emacs.d/var/backup/" t)
+(make-directory "/Users/bishbr/.emacs.d/var/autosave/" t)
+(make-directory "/Users/bishbr/.emacs.d/var/backup/" t)
 (setq backup-directory-alist
-      `(
-        ("." . "/.emacs.d/var/backup/")
-        ("COMMIT_EDITMSG" . nil)
-        ("RMAIL" . nil)
-        )
+      `(("." . "/Users/bishbr/.emacs.d/var/backup/"))
       )
-(setq auto-save-file-name-transforms '((".*" "~/.emacs.d/var/autosave/" t)))
+(setq auto-save-file-name-transforms '((".*"  "/Users/bishbr/.emacs.d/var/autosave/" t)))
 (setq vc-make-backup-files t)
 (setq delete-old-versions t)
 (setq version-control t)
@@ -95,7 +92,7 @@
 
 (midnight-mode t)
 (desktop-save-mode -1)
-
+(display-time-mode t)
 
 (use-package simple-modeline
   :demand t
@@ -219,7 +216,7 @@
 
 
 (use-package copilot-chat
-  :load-path "/Users/bishbr/src/emacs/copilot-chat.el")
+  )
 
 (use-package copilot
   :load-path "/Users/bishbr/src/emacs/copilot.el"
@@ -319,6 +316,10 @@ See URL `https://www.jenkins.io/doc/book/pipeline/development/#linter'."
   (volatile-highlights-mode t)
   )
 
+(use-package rotate
+  :commands (rotate-layout rotate-window)
+  )
+
 (use-package hydra
   :defer 2
   :config
@@ -392,6 +393,7 @@ See URL `https://www.jenkins.io/doc/book/pipeline/development/#linter'."
 
 (use-package yasnippet)
 (use-package consult-yasnippet)
+(use-package recompile-on-save)
 
 (require 'init-bishbr-cosmetic)
 (require 'init-bishbr-git)

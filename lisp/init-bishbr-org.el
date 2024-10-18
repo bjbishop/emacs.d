@@ -5,10 +5,11 @@
 
 
 (setq
- org-agenda-files '("~/Documents/org/tasks.org")
- org-directory "~/Documents/org"
- org-default-notes-file "~/Documents/org/notes.org"
+ org-agenda-files '("~/Docs/org/tasks.org")
+ org-directory "~/Docs/org/"
+ org-default-notes-file "~/Docs/org/notes.org"
  org-agenda-include-diary t
+ org-use-speed-commands t
  )
 
 (use-package deft
